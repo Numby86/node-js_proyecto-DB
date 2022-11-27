@@ -1,0 +1,38 @@
+[
+  {
+    "title": "The Matrix",
+    "director": "Hermanas Wachowski",
+    "year": 1999,
+    "genre": ["Accion"]
+  },
+  {
+    "title": "The Matrix Reloaded",
+    "director": "Hermanas Wachowski",
+    "year": 2003,
+    "genre": ["Accion"]
+  },
+  {
+    "title": "Buscando a Nemo",
+    "director": "Andrew Stanton",
+    "year": 2003,
+    "genre": ["Animacion"]
+  },
+  {
+    "title": "Buscando a Dory",
+    "director": "Andrew Stanton",
+    "year": 2016,
+    "genre": ["Animacion"]
+  },
+  {
+    "title": "Interestelar",
+    "director": "Christopher Nolan",
+    "year": 2014,
+    "genre": ["Ciencia Ficcion"]
+  },
+  {
+    "title": "50 primeras citas",
+    "director": "Peter Segal",
+    "year": 2004,
+    "genre": ["Comedia"]
+  }
+]
