@@ -10,21 +10,19 @@ const PORT = 3000;
 const server = express();
 
 server.use(cors());
+server.use(express.json());
+server.use(express.urlencoded({ extended: false }));
 
-// server.use(express.json());
-
-// server.use(express.urlencoded({ extended: false }));
-
-//rutas aqui
+//rutas aqui-------------------------------------------------
 server.use('/movies', moviesRouter);
 
-// server.use('*', (req, res, next) => {
-//     next(createError('Esta ruta no existe', 404));
-// });
+server.use('*', (req, res, next) => {
+    next(createError('Esta ruta no existe', 404));
+});
 
-// server.use((err, req, res, next) => {
-//     return res.status(err.status || 500).json(err.message || 'Unexpected error');
-// });
+server.use((err, req, res, next) => {
+    return res.status(err.status || 500).json(err.message || 'Unexpected error');
+});
 
 server.listen(PORT, () => {
     console.log(`El servidor está escuchando en http://localhost:${PORT}`);

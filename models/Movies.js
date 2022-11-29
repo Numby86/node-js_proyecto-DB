@@ -8,10 +8,12 @@ const movieSchema = new mongoose.Schema(
         genre: {
             type: [String],
             enum: {
-                values: ["Animacion", "Anime", "Accion", "Aventuras", "Belica", "Ciencia Ficcion", "Comedia", "Crimen", "Deportiva", "Documental", "Drama", "Fantasia", "Futurista", "Historica", "Musical", "Policiaca", "Religiosa", "Suspense", "Terror", "Western"],
+                values: ["Animacion", "Anime", "Accion", "Aventuras", "Belica", "Ciencia Ficcion", "Comedia", "Cortometraje", "Crimen", "Deportiva", "Documental", "Drama", "Familiar", "Fantasia", "Futurista", "Historica", "Musical", "Policiaca", "Religiosa", "Romantica", "Suspense", "Terror", "Western"],
                 message: "Ese no es un genero oficial en nuestra pagina. "
             }
-        }
+        }, 
+        saga: Boolean,
+        duration: {type: Number}
     },
     {
         timestamps: true

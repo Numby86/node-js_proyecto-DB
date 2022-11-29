@@ -3,36 +3,342 @@
     "title": "The Matrix",
     "director": "Hermanas Wachowski",
     "year": 1999,
-    "genre": ["Accion"]
+    "genre": ["Accion"],
+    "saga": true,
+    "duration": 131
   },
   {
     "title": "The Matrix Reloaded",
     "director": "Hermanas Wachowski",
     "year": 2003,
-    "genre": ["Accion"]
+    "genre": ["Accion"],
+    "saga": true,
+    "duration": 138
+  },
+  {
+    "title": "The Matrix Revolutions",
+    "director": "Hermanas Wachowski",
+    "year": 2003,
+    "genre": ["Accion"],
+    "saga": true,
+    "duration": 130
+  },
+  {
+    "title": "The Matrix Resurrections",
+    "director": "Lana Wachowski",
+    "year": 2021,
+    "genre": ["Accion"],
+    "saga": true,
+    "duration": 148
   },
   {
     "title": "Buscando a Nemo",
     "director": "Andrew Stanton",
     "year": 2003,
-    "genre": ["Animacion"]
+    "genre": ["Animacion"],
+    "saga": true,
+    "duration": 101
   },
   {
     "title": "Buscando a Dory",
     "director": "Andrew Stanton",
     "year": 2016,
-    "genre": ["Animacion"]
+    "genre": ["Animacion"],
+    "saga": true,
+    "duration": 103
   },
   {
     "title": "Interestelar",
     "director": "Christopher Nolan",
     "year": 2014,
-    "genre": ["Ciencia Ficcion"]
+    "genre": ["Ciencia Ficcion"],
+    "duration": 169
   },
   {
     "title": "50 primeras citas",
     "director": "Peter Segal",
     "year": 2004,
-    "genre": ["Comedia"]
-  }
+    "genre": ["Comedia"],
+    "duration": 99
+  },
+  {
+    "title": "La princesa Mononoke",
+    "director": "Hayao Miyazaki",
+    "year": 1997,
+    "genre": ["Anime"],
+    "duration": 133
+  },
+  {
+    "title": "Big Fish",
+    "director": "Tim Burton",
+    "year": 2004,
+    "genre": ["Aventuras"],
+    "duration": 126
+  },
+  {
+    "title": "Pearl Harbor",
+    "director": "Michael Bay",
+    "year": 2001,
+    "genre": ["Belica"],
+    "duration": 170
+  },
+  {
+    "title": "Seven",
+    "director": "David Fincher",
+    "year": 1995,
+    "genre": ["Crimen"],
+    "duration": 127
+  },
+  {
+    "title": "42 segundos",
+    "director": "Dani de la Orden",
+    "year": 2022,
+    "genre": ["Deportiva"],
+    "duration": 106
+  },
+  {
+    "title": "Lo que el pulpo me enseño",
+    "director": "James Reed",
+    "year": 2020,
+    "genre": ["Documental"],
+    "duration": 85
+  },
+  {
+    "title": "Lion",
+    "director": "Garth Davis",
+    "year": 2016,
+    "genre": ["Drama"],
+    "duration": 120
+  },
+  {
+    "title": "Willow",
+    "director": "Ron Howard",
+    "year": 1988,
+    "genre": ["Fantasia", "Aventuras"],
+    "duration": 120
+  },
+  {
+    "title": "Minority Report",
+    "director": "Steven Spielberg",
+    "year": 2002,
+    "genre": ["Futurista"],
+    "duration": 144
+  },
+  {
+    "title": "Dunkerque",
+    "director": "Christopher Nolan",
+    "year": 2017,
+    "genre": ["Historica", "Belica"],
+    "duration": 107
+  },
+  {
+    "title": "El gran Showman",
+    "director": "Michael Gracey",
+    "year": 2017,
+    "genre": ["Musical", "Drama"],
+    "duration": 105
+  },
+  {
+    "title": "El guardian invisible",
+    "director": "Fernado Gonzalez",
+    "year": 2017,
+    "genre": ["Policiaca", "Suspense"],
+    "duration": 129
+  },
+  {
+    "title": "La pasion de cristo",
+    "director": "Mel Gibson",
+    "year": 2004,
+    "genre": ["Religiosa", "Drama"],
+    "duration": 126
+  },
+  {
+    "title": "The Game",
+    "director": "David Fincher",
+    "year": 1997,
+    "genre": ["Suspense"],
+    "duration": 123
+  },
+  {
+    "title": "Expediente Warren: The Conjuring",
+    "director": "James Wan",
+    "year": 2013,
+    "genre": ["Terror", "Suspense"],
+    "saga": true,
+    "duration": 112
+  },
+  {
+    "title": "El forajido",
+    "director": "Howard Hanks",
+    "year": 1943,
+    "genre": ["Western"],
+    "duration": 116
+  },
+  {
+    "title": "Dentro del Laberinto",
+    "director": "Jim Henson",
+    "year": 1986,
+    "genre": ["Familiar", "Fantasia"],
+    "duration": 101
+  },
+  {
+    "title": "El diario de Noa",
+    "director": "Nick Cassavetes",
+    "year": 2004,
+    "genre": ["Romantica"],
+    "duration": 124
+  },
+  {
+    "title": "La maison en petits cubes",
+    "director": "Kunio Kato",
+    "year": 2008,
+    "genre": ["Cortometraje"],
+    "duration": 12
+  },
+  {
+    "title": "El ultimo mohicano",
+    "director": "Michael Mann",
+    "year": 1992,
+    "genre": ["Belica", "Aventuras"],
+    "duration": 112
+  },
+  {
+    "title": "Primos",
+    "director": "Daniel Sanchez",
+    "year": 2011,
+    "genre": ["Comedia", "Romantica"],
+    "duration": 97
+},
+{
+  "title": "La bella y la bestia",
+  "director": "Gary Trousdale",
+  "year": 1992,
+  "genre": ["Fantasia", "Musical"],
+  "duration": 85
+},
+{
+  "title": "La salida de los obreros de la fabrica",
+  "director": "Auguste Marie",
+  "year": 1895,
+  "duration": 0.46
+},
+{
+  "title": "Rebeldes",
+  "director": "Francis Ford Coppola",
+  "year": 1983,
+  "genre": ["Drama"],
+  "duration": 88
+},
+{
+  "title": "Destino de Caballero",
+  "director": "Bryan Helgeland",
+  "year": 2001,
+  "genre": ["Aventuras", "Accion"],
+  "duration": 132
+},
+{
+  "title": "El Padrino",
+  "director": "Francis Ford Coppola",
+  "year": 1972,
+  "genre": ["Crimen", "Drama"],
+  "saga": true,
+  "duration": 175
+},
+{
+  "title": "El Padrino II",
+  "director": "Francis Ford Coppola",
+  "year": 1974,
+  "genre": ["Crimen", "Drama"],
+  "saga": true,
+  "duration": 200
+},
+{
+  "title": "El Padrino III",
+  "director": "Francis Ford Coppola",
+  "year": 1990,
+  "genre": ["Crimen", "Drama"],
+  "saga": true,
+  "duration": 163
+},
+{
+  "title": "El señor de los anillos: La comunidad del anillo",
+  "director": "Peter Jackson",
+  "year": 2001,
+  "genre": ["Fantasia", "Aventuras"],
+  "saga": true,
+  "duration": 180
+},
+{
+  "title": "El señor de los anillos: Las dos torres",
+  "director": "Peter Jackson",
+  "year": 2002,
+  "genre": ["Fantasia", "Aventuras"],
+  "saga": true,
+  "duration": 179
+},
+{
+  "title": "El señor de los anillos: El retorno del Rey",
+  "director": "Peter Jackson",
+  "year": 2003,
+  "genre": ["Fantasia", "Aventuras"],
+  "saga": true,
+  "duration": 201
+},
+{
+  "title": "Testigo de cargo",
+  "director": "Billy Wilder",
+  "year": 1957,
+  "genre": ["Drama"],
+  "duration": 114
+},
+{
+  "title": "el libro magico",
+  "director": "Georges Melies",
+  "year": 1900,
+  "genre": ["Fantasia", "Cortometraje"],
+  "duration": 3
+},
+
+{
+  "title": "Los ultimos dias de Pompeya",
+  "director": "Mario Caserini",
+  "year": 1913,
+  "genre": ["Drama"],
+  "duration": 88
+},
+{
+  "title": "La huelga",
+  "director": "Sergei M. Eisenstein",
+  "year": 1925,
+  "genre": ["Drama"],
+  "duration": 94
+},
+{
+  "title": "Lo que el viento se llevo",
+  "director": "Victor Fleming",
+  "year": 1939,
+  "genre": ["Drama","Romantica"],
+  "duration": 238
+},
+{
+  "title": "El retrato de Dorian Grey",
+  "director": "Albert Lewin",
+  "year": 1945,
+  "genre": ["Drama"],
+  "duration": 110
+},
+{
+  "title": "La gran evasion",
+  "director": "Jhon Sturges",
+  "year": 1963,
+  "genre": ["Drama", "Aventuras"],
+  "duration": 168
+},
+{
+  "title": "El gran dictador",
+  "director": "Charles Chaplin",
+  "year": 1940,
+  "genre": ["Comedia"],
+  "duration": 128
+}
 ]
