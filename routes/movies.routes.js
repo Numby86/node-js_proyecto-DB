@@ -5,7 +5,11 @@ const moviesRouter = express.Router();
 moviesRouter.get("/", async (req, res, next) => {
   try {
     const movies = await Movie.find();
-    return res.status(200).json(movies);
+    return res.status(200).json({
+      movies,
+      //SOLO PARA PROBAR LUEGO SOLO (movies)
+      user: req.user
+    });
   } catch (err) {
     return next(err);
   }
