@@ -31,3 +31,5 @@
 - Creo Autenticacion con jsonWebToken (instalo todo lo necesario) y funciona.
 
 - Pruebo middlewares, de authentication con JWT en get-all cinemas, y de passport en get-all movies y funcionan ambas.
+
+- Creo middleware para poder subir archivos, y pruebo subiendo una foto de un cine desde postman.

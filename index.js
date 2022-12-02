@@ -8,6 +8,7 @@ const createError = require('./utils/errors/create-errors.js');
 const userRouter = require('./routes/user.routes.js');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
+const path = require('path');
 const DB_URL = "mongodb+srv://root:7GBDSVHdMtJTfjZY@nodejs-proyectodb.ihshpoy.mongodb.net/?retryWrites=true&w=majority";
 
 connect();
@@ -20,6 +21,7 @@ server.set("secretKey", "proyectoNodeApi");
 server.use(cors());
 server.use(express.json());
 server.use(express.urlencoded({ extended: false }));
+server.use(express.static(path.join(__dirname, 'public')));
 //passport aqui--------------------------
 
 require('./utils/authentication/passport.js');

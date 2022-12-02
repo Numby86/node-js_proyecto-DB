@@ -2,6 +2,7 @@ const express = require('express');
 const Cinema = require('../models/Cinemas.js');
 const createError = require('../utils/errors/create-errors.js');
 const isAuthJWT = require('../utils/middlewares/auth-jwt.middleware.js');
+const upload = require('../utils/middlewares/file.middleware.js')
 
 const cinemasRouter = express.Router();
 
@@ -14,9 +15,10 @@ cinemasRouter.get('/', [isAuthJWT], async (req, res, next) => {
     }
 });
 
-cinemasRouter.post('/', async (req, res, next) => {
+cinemasRouter.post('/', [upload.single('picture')], async (req, res, next) => {
     try {
-        const newCinema = new Cinema({ ...req.body });
+        const picture = req.file ? req.file.filename : null;
+        const newCinema = new Cinema({ ...req.body, picture });
         const createdCinema = await newCinema.save();
         return res.status(201).json(createdCinema);
     } catch (err) {
@@ -54,20 +56,20 @@ cinemasRouter.put('/add-moviesBillboard', async (req, res, next) => {
     }
 });
 
-// cinemasRouter.put('/:id', async (req, res, next) => {
-//     try {
-//         const id = req.params.id;
-//         const modifiedCinema = new Cinema({ ...req.body });
-//         modifiedCinema._id = id;
-//         const cinemaUpdated = await Cinema.findByIdAndUpdate(
-//             id,
-//             { $set: { ...modifiedCinema }},
-//             { new: true }
-//         );
-//         return res.status(200).json(cinemaUpdated);
-//     } catch (err) {
-//         next(err);
-//     }
-// });
+cinemasRouter.put('/update/:id', async (req, res, next) => {
+    try {
+        const id = req.params.id;
+        const modifiedCinema = new Cinema({ ...req.body });
+        modifiedCinema._id = id;
+        const cinemaUpdated = await Cinema.findByIdAndUpdate(
+            id,
+            { $set: { ...modifiedCinema }},
+            { new: true }
+        );
+        return res.status(200).json(cinemaUpdated);
+    } catch (err) {
+        next(err);
+    }
+});
 
 module.exports = cinemasRouter;
