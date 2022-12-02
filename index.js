@@ -7,11 +7,15 @@ const passport = require('passport');
 const createError = require('./utils/errors/create-errors.js');
 const userRouter = require('./routes/user.routes.js');
 const session = require('express-session');
+const MongoStore = require('connect-mongo');
+const DB_URL = "mongodb+srv://root:7GBDSVHdMtJTfjZY@nodejs-proyectodb.ihshpoy.mongodb.net/?retryWrites=true&w=majority";
 
 connect();
 
 const PORT = 3000;
 const server = express();
+
+server.set("secretKey", "proyectoNodeApi");
 
 server.use(cors());
 server.use(express.json());
@@ -26,7 +30,10 @@ server.use(session({
     saveUninitialized: false,
     cookie: {
         maxAge: 90000
-    }
+    },
+    store: MongoStore.create({
+        mongoUrl: DB_URL,
+    })
 }));
 
 server.use(passport.initialize());

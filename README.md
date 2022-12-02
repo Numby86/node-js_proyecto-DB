@@ -26,4 +26,8 @@
 
 - Creo metodo DELETE que me borre un cine, borro el primero que cree y funciona bien, despues lo añado con el POST y el PUT anterior le vuelvo a crear y meter una pelicula.
 
-- Creo Autenticacion (instalando todas las dependencias necesarias), con un register, un login y logout, y funcionan correctamente.
+- Creo Autenticacion con passport (instalando todas las dependencias necesarias), con un register, un login y logout, y funcionan correctamente.
+
+- Creo Autenticacion con jsonWebToken (instalo todo lo necesario) y funciona.
+
+- Pruebo middlewares, de authentication con JWT en get-all cinemas, y de passport en get-all movies y funcionan ambas.

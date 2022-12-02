@@ -1,15 +1,12 @@
 const express = require("express");
 const Movie = require("../models/Movies.js");
+const isAuthPassport = require("../utils/middlewares/auth-passport.middleware.js");
 const moviesRouter = express.Router();
 
-moviesRouter.get("/", async (req, res, next) => {
+moviesRouter.get("/", [isAuthPassport], async (req, res, next) => {
   try {
     const movies = await Movie.find();
-    return res.status(200).json({
-      movies,
-      //SOLO PARA PROBAR LUEGO SOLO (movies)
-      user: req.user
-    });
+    return res.status(200).json(movies);
   } catch (err) {
     return next(err);
   }
