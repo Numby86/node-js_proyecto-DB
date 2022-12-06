@@ -3,9 +3,10 @@ const Movie = require("../models/Movies.js");
 const isAuthPassport = require("../utils/middlewares/auth-passport.middleware.js");
 const moviesRouter = express.Router();
 
-moviesRouter.get("/", [isAuthPassport], async (req, res, next) => {
+// LA RUTA BASICA TRAE TODAS LAS MOVIES EN ORDEN ALFABETICO
+moviesRouter.get("/", async (req, res, next) => {
   try {
-    const movies = await Movie.find();
+    const movies = await Movie.find().sort({title:1});
     return res.status(200).json(movies);
   } catch (err) {
     return next(err);

@@ -13,6 +13,6 @@ const uploadToCloudinary = async(req, res, next) => {
     } else {
         return next();
     }
-}
+};
 
 module.exports =  uploadToCloudinary;

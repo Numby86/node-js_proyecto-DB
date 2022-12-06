@@ -5,6 +5,7 @@ const isAuthJWT = require('../utils/middlewares/auth-jwt.middleware.js');
 const upload = require('../utils/middlewares/file.middleware.js');
 const imageToUri = require('image-to-uri');
 const fs = require('fs');
+const uploadToCloudinary = require('../utils/middlewares/cloudinary.middleware.js');
 
 const cinemasRouter = express.Router();
 
@@ -17,7 +18,7 @@ cinemasRouter.get('/', [isAuthJWT], async (req, res, next) => {
     }
 });
 
-cinemasRouter.post('/', [upload.single('picture')], async (req, res, next) => {
+cinemasRouter.post('/create', [upload.single('picture')], async (req, res, next) => {
     try {
         const picture = req.file ? req.file.filename : null;
         const newCinema = new Cinema({ ...req.body, picture });
@@ -41,7 +42,7 @@ cinemasRouter.post('/uri', [upload.single('picture')], async (req, res, next) =>
     }
 });
 
-cinemasRouter.post('/cloud', [upload.single('picture')], async (req, res, next) => {
+cinemasRouter.post('/cloudinary', [upload.single('picture'), uploadToCloudinary], async (req, res, next) => {
     try {
         const newCinema = new Cinema({ ...req.body, picture: req.file_url });
         const createdCinema = await newCinema.save();
