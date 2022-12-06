@@ -43,7 +43,7 @@ cinemasRouter.post('/uri', [isAuthJWT, upload.single('picture')], async (req, re
     }
 });
 
-cinemasRouter.post('/cloudinary', [upload.single('picture'), uploadToCloudinary], async (req, res, next) => {
+cinemasRouter.post('/cloudinary', [isAuthJWT, upload.single('picture'), uploadToCloudinary], async (req, res, next) => {
     try {
         const newCinema = new Cinema({ ...req.body, picture: req.file_url });
         const createdCinema = await newCinema.save();

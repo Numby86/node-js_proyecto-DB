@@ -34,6 +34,6 @@
 
 - Creo middleware para poder subir archivos, y pruebo subiendo una foto de un cine desde postman.
 
-- Creo opciones para subir fotos como texto a traves de uri.
+- Creo opciones para subir fotos como texto a traves de uri, y tambien con Cloudinary, para subirla y borrarla, pruebo las 2 opciones con un cine que creo, y funciona.
 
 - Despliego mi proyecto de api con Vercel.
