@@ -6,10 +6,11 @@ const upload = require('../utils/middlewares/file.middleware.js');
 const imageToUri = require('image-to-uri');
 const fs = require('fs');
 const uploadToCloudinary = require('../utils/middlewares/cloudinary.middleware.js');
+const isAuthPassport = require('../utils/middlewares/auth-passport.middleware.js');
 
 const cinemasRouter = express.Router();
 
-cinemasRouter.get('/', [isAuthJWT], async (req, res, next) => {
+cinemasRouter.get('/', async (req, res, next) => {
     try {
         const cinemas = await Cinema.find().populate('moviesBillboard');
         return res.status(200).json(cinemas);
@@ -18,7 +19,7 @@ cinemasRouter.get('/', [isAuthJWT], async (req, res, next) => {
     }
 });
 
-cinemasRouter.post('/create', [upload.single('picture')], async (req, res, next) => {
+cinemasRouter.post('/create', [isAuthJWT, upload.single('picture')], async (req, res, next) => {
     try {
         const picture = req.file ? req.file.filename : null;
         const newCinema = new Cinema({ ...req.body, picture });
@@ -29,7 +30,7 @@ cinemasRouter.post('/create', [upload.single('picture')], async (req, res, next)
     }
 });
 
-cinemasRouter.post('/uri', [upload.single('picture')], async (req, res, next) => {
+cinemasRouter.post('/uri', [isAuthJWT, upload.single('picture')], async (req, res, next) => {
     try {
         const filePath = req.file ? req.file.path : null;
         const picture = imageToUri(filePath);
@@ -42,7 +43,8 @@ cinemasRouter.post('/uri', [upload.single('picture')], async (req, res, next) =>
     }
 });
 
-cinemasRouter.post('/cloudinary', [upload.single('picture'), uploadToCloudinary], async (req, res, next) => {
+
+cinemasRouter.post('/to-cloud', [upload.single('picture'), uploadToCloudinary], async (req, res, next) => {
     try {
         const newCinema = new Cinema({ ...req.body, picture: req.file_url });
         const createdCinema = await newCinema.save();
@@ -52,7 +54,8 @@ cinemasRouter.post('/cloudinary', [upload.single('picture'), uploadToCloudinary]
     }
 });
 
-cinemasRouter.delete('/:id', async (req, res, next) => {
+
+cinemasRouter.delete('/:id', [isAuthJWT], async (req, res, next) => {
     try {
         const id = req.params.id;
         await Cinema.findByIdAndDelete(id);
@@ -62,7 +65,7 @@ cinemasRouter.delete('/:id', async (req, res, next) => {
     }
 });
 
-cinemasRouter.put('/add-moviesBillboard', async (req, res, next) => {
+cinemasRouter.put('/add-moviesBillboard', [isAuthJWT], async (req, res, next) => {
     try {
         const { cinemaId, movieId } = req.body;
         if (!cinemaId) {
@@ -82,7 +85,7 @@ cinemasRouter.put('/add-moviesBillboard', async (req, res, next) => {
     }
 });
 
-cinemasRouter.put('/update/:id', async (req, res, next) => {
+cinemasRouter.put('/update/:id', [isAuthJWT], async (req, res, next) => {
     try {
         const id = req.params.id;
         const modifiedCinema = new Cinema({ ...req.body });

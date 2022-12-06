@@ -1,5 +1,6 @@
 const express = require("express");
 const Movie = require("../models/Movies.js");
+const isAuthJWT = require("../utils/middlewares/auth-jwt.middleware.js");
 const isAuthPassport = require("../utils/middlewares/auth-passport.middleware.js");
 const moviesRouter = express.Router();
 
@@ -66,7 +67,7 @@ moviesRouter.get("/from/2010", async (req, res, next) => {
   }
 });
 
-moviesRouter.post("/", async (req, res, next) => {
+moviesRouter.post("/", [isAuthJWT], async (req, res, next) => {
   try {
     const newMovie = new Movie({ ...req.body });
     const createdMovie = await newMovie.save();
@@ -76,7 +77,7 @@ moviesRouter.post("/", async (req, res, next) => {
   }
 });
 
-moviesRouter.delete("/:id", async (req, res, next) => {
+moviesRouter.delete("/:id", [isAuthJWT], async (req, res, next) => {
   try {
     const id = req.params.id;
     await Movie.findByIdAndDelete(id);
@@ -86,7 +87,7 @@ moviesRouter.delete("/:id", async (req, res, next) => {
   }
 });
 
-moviesRouter.put('/:id', async (req, res, next) => {
+moviesRouter.put('/:id', [isAuthJWT], async (req, res, next) => {
   try {
       const id = req.params.id;
       const modifiedMovie = new Movie({ ...req.body });
