@@ -2,7 +2,9 @@ const express = require('express');
 const Cinema = require('../models/Cinemas.js');
 const createError = require('../utils/errors/create-errors.js');
 const isAuthJWT = require('../utils/middlewares/auth-jwt.middleware.js');
-const upload = require('../utils/middlewares/file.middleware.js')
+const upload = require('../utils/middlewares/file.middleware.js');
+const imageToUri = require('image-to-uri');
+const fs = require('fs');
 
 const cinemasRouter = express.Router();
 
@@ -19,6 +21,29 @@ cinemasRouter.post('/', [upload.single('picture')], async (req, res, next) => {
     try {
         const picture = req.file ? req.file.filename : null;
         const newCinema = new Cinema({ ...req.body, picture });
+        const createdCinema = await newCinema.save();
+        return res.status(201).json(createdCinema);
+    } catch (err) {
+        next(err);
+    }
+});
+
+cinemasRouter.post('/uri', [upload.single('picture')], async (req, res, next) => {
+    try {
+        const filePath = req.file ? req.file.path : null;
+        const picture = imageToUri(filePath);
+        const newCinema = new Cinema({ ...req.body, picture });
+        const createdCinema = await newCinema.save();
+        await fs.unlinkSync(filePath);
+        return res.status(201).json(createdCinema);
+    } catch (err) {
+        next(err);
+    }
+});
+
+cinemasRouter.post('/cloud', [upload.single('picture')], async (req, res, next) => {
+    try {
+        const newCinema = new Cinema({ ...req.body, picture: req.file_url });
         const createdCinema = await newCinema.save();
         return res.status(201).json(createdCinema);
     } catch (err) {

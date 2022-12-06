@@ -7,5 +7,4 @@ const isAuthPassport = (req, res, next) => {
         return next(createError('No tienes permisos', 401));
     }
 }
-
 module.exports = isAuthPassport;

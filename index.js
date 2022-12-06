@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require('express');
 const moviesRouter = require('./routes/movies.routes.js');
 const cinemasRouter = require('./routes/cinemas.routes.js');
@@ -9,29 +11,33 @@ const userRouter = require('./routes/user.routes.js');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const path = require('path');
-const DB_URL = "mongodb+srv://root:7GBDSVHdMtJTfjZY@nodejs-proyectodb.ihshpoy.mongodb.net/?retryWrites=true&w=majority";
+const cloudinary = require('cloudinary');
+const DB_URL = process.env.DB_URL;
 
 connect();
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 const server = express();
 
-server.set("secretKey", "proyectoNodeApi");
+cloudinary.config({ 
+    cloud_name: process.env.CLOUD_NAME, 
+    api_key: process.env.CLOUD_API_KEY, 
+    api_secret: process.env.CLOUD_API_SECRET
+});
 
 server.use(cors());
 server.use(express.json());
 server.use(express.urlencoded({ extended: false }));
 server.use(express.static(path.join(__dirname, 'public')));
-//passport aqui--------------------------
 
 require('./utils/authentication/passport.js');
 
 server.use(session({
-    secret: 'mi_secreto',
+    secret: process.env.SESSION_SECRET-KEY,
     resave: false,
     saveUninitialized: false,
     cookie: {
-        maxAge: 90000
+        maxAge: 1200000
     },
     store: MongoStore.create({
         mongoUrl: DB_URL,
@@ -41,7 +47,10 @@ server.use(session({
 server.use(passport.initialize());
 server.use(passport.session());
 
-//rutas aqui-------------------------------------------------
+server.get('/', (req, res) => {
+    res.json('Bienvenido a nuestra pagina de cine. ')
+});
+
 server.use('/user', userRouter);
 server.use('/movies', moviesRouter);
 server.use('/cinemas', cinemasRouter);
@@ -57,3 +66,5 @@ server.use((err, req, res, next) => {
 server.listen(PORT, () => {
     console.log(`El servidor está escuchando en http://localhost:${PORT}`);
 });
+
+module.exports = server;

@@ -1,3 +1,4 @@
+require('dotenv').config();
 const mongoose = require("mongoose");
 const Movie = require("../../models/Movies.js");
 const fs = require("fs");
