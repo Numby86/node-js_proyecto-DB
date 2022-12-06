@@ -43,15 +43,15 @@ cinemasRouter.post('/uri', [isAuthJWT, upload.single('picture')], async (req, re
     }
 });
 
-// cinemasRouter.post('/cloudinary', [upload.single('picture'), uploadToCloudinary], async (req, res, next) => {
-//     try {
-//         const newCinema = new Cinema({ ...req.body, picture: req.file_url });
-//         const createdCinema = await newCinema.save();
-//         return res.status(201).json(createdCinema);
-//     } catch (err) {
-//         next(err);
-//     }
-// });
+cinemasRouter.post('/cloudinary', [upload.single('picture'), uploadToCloudinary], async (req, res, next) => {
+    try {
+        const newCinema = new Cinema({ ...req.body, picture: req.file_url });
+        const createdCinema = await newCinema.save();
+        return res.status(201).json(createdCinema);
+    } catch (err) {
+        next(err);
+    }
+});
 
 cinemasRouter.delete('/:id', [isAuthJWT], async (req, res, next) => {
     try {
