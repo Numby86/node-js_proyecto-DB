@@ -33,7 +33,7 @@ server.use(express.static(path.join(__dirname, 'public')));
 require('./utils/authentication/passport.js');
 
 server.use(session({
-    secret: process.env.SESSION_SECRET-KEY,
+    secret: process.env.SESSION_SECRET_KEY,
     resave: false,
     saveUninitialized: false,
     cookie: {
