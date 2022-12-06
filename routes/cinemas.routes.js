@@ -10,7 +10,7 @@ const isAuthPassport = require('../utils/middlewares/auth-passport.middleware.js
 
 const cinemasRouter = express.Router();
 
-cinemasRouter.get('/', async (req, res, next) => {
+cinemasRouter.get('/',isAuthPassport , async (req, res, next) => {
     try {
         const cinemas = await Cinema.find().populate('moviesBillboard');
         return res.status(200).json(cinemas);
@@ -43,17 +43,15 @@ cinemasRouter.post('/uri', [isAuthJWT, upload.single('picture')], async (req, re
     }
 });
 
-
-cinemasRouter.post('/to-cloud', [upload.single('picture'), uploadToCloudinary], async (req, res, next) => {
-    try {
-        const newCinema = new Cinema({ ...req.body, picture: req.file_url });
-        const createdCinema = await newCinema.save();
-        return res.status(201).json(createdCinema);
-    } catch (err) {
-        next(err);
-    }
-});
-
+// cinemasRouter.post('/cloudinary', [upload.single('picture'), uploadToCloudinary], async (req, res, next) => {
+//     try {
+//         const newCinema = new Cinema({ ...req.body, picture: req.file_url });
+//         const createdCinema = await newCinema.save();
+//         return res.status(201).json(createdCinema);
+//     } catch (err) {
+//         next(err);
+//     }
+// });
 
 cinemasRouter.delete('/:id', [isAuthJWT], async (req, res, next) => {
     try {

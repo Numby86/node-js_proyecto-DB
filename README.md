@@ -34,6 +34,6 @@
 
 - Creo middleware para poder subir archivos, y pruebo subiendo una foto de un cine desde postman.
 
-- Creo opciones para poder eliminar fotos una vez subidas, a traves de uri o de cloudinary.
+- Creo opciones para subir fotos como texto a traves de uri.
 
 - Despliego mi proyecto de api con Vercel.
