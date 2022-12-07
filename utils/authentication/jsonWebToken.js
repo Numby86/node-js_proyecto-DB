@@ -9,7 +9,7 @@ const getJWT = (userInfo) => {
         },
         process.env.JWT_SECRET_KEY,
         {
-            expiresIn: 120
+            expiresIn: "3h"
         }
     );
 }
