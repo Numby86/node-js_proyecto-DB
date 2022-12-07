@@ -10,7 +10,8 @@ const movieSchema = new mongoose.Schema(
             enum: {
                 values: ["Animacion", "Anime", "Accion", "Aventuras", "Belica", "Ciencia Ficcion", "Comedia", "Cortometraje", "Crimen", "Deportiva", "Documental", "Drama", "Familiar", "Fantasia", "Futurista", "Historica", "Musical", "Policiaca", "Religiosa", "Romantica", "Suspense", "Terror", "Western"],
                 message: "Ese no es un genero oficial en nuestra pagina. "
-            }
+            },
+        oscar: Number
         }, 
         saga: Boolean,
         duration: {type: Number}
