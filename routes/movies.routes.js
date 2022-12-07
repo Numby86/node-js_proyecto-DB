@@ -70,9 +70,7 @@ moviesRouter.get("/from/2010", async (req, res, next) => {
 // AÑADO GET SIN PERTENECEN A UNA SAGA O TIENEN UN OSCAR
 moviesRouter.get("/saga", async (req, res, next) => {
   try {
-    const movie = await Movie.find({
-      saga: { $eq: true },
-    });
+    const movie = await Movie.find( {$in: { saga }});
     return res.status(200).json(movie);
   } catch (err) {
     return next(err);
@@ -81,7 +79,9 @@ moviesRouter.get("/saga", async (req, res, next) => {
 
 moviesRouter.get("/oscar-winning", async (req, res, next) => {
   try {
-    const movie = await Movie.find({oscar: { $gte: 1 }}, {title: 1});
+    const movie = await Movie.find({
+      oscar: { $gt: 0}
+    });
     return res.status(200).json(movie);
   } catch (err) {
     return next(err);
