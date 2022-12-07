@@ -5,7 +5,8 @@ const isAuthPassport = require("../utils/middlewares/auth-passport.middleware.js
 const moviesRouter = express.Router();
 
 // LA RUTA BASICA TRAE TODAS LAS MOVIES EN ORDEN ALFABETICO
-moviesRouter.get("/", async (req, res, next) => {
+
+moviesRouter.get("/", [isAuthPassport], async (req, res, next) => {
   try {
     const movies = await Movie.find().sort({title:1});
     return res.status(200).json(movies);
@@ -14,7 +15,9 @@ moviesRouter.get("/", async (req, res, next) => {
   }
 });
 
-moviesRouter.get("/:id", async (req, res, next) => {
+// LOS GET QUE PIDE EL EJERCICIO, CON AUTH. PASSPORT
+
+moviesRouter.get("/:id", [isAuthPassport], async (req, res, next) => {
   const id = req.params.id;
   try {
     const movies = await Movie.findById(id);
@@ -28,7 +31,7 @@ moviesRouter.get("/:id", async (req, res, next) => {
   }
 });
 
-moviesRouter.get("/title/:title", async (req, res, next) => {
+moviesRouter.get("/title/:title", [isAuthPassport], async (req, res, next) => {
   const titleMovie = req.params.title;
   try {
     const movie = await Movie.find({ title: titleMovie });
@@ -44,7 +47,7 @@ moviesRouter.get("/title/:title", async (req, res, next) => {
   }
 });
 
-moviesRouter.get("/genre/:genre", async (req, res, next) => {
+moviesRouter.get("/genre/:genre", [isAuthPassport], async (req, res, next) => {
   const genreMovie = req.params.genre;
   try {
     const movie = await Movie.find({
@@ -56,7 +59,7 @@ moviesRouter.get("/genre/:genre", async (req, res, next) => {
   }
 });
 
-moviesRouter.get("/from/2010", async (req, res, next) => {
+moviesRouter.get("/from/2010", [isAuthPassport], async (req, res, next) => {
   try {
     const movie = await Movie.find({
       year: { $gt: 2010 }
@@ -67,8 +70,9 @@ moviesRouter.get("/from/2010", async (req, res, next) => {
   }
 });
 
-// AÑADO GET SIN PERTENECEN A UNA SAGA O TIENEN UN OSCAR
-moviesRouter.get("/saga/true", async (req, res, next) => {
+// AÑADO GET SI PERTENECEN A UNA SAGA, O TIENEN UN OSCAR QUE TE TRAE SOLO ID Y TITULO, CON AUTH. PASSPORT
+
+moviesRouter.get("/saga/true", [isAuthPassport], async (req, res, next) => {
   try {
     const movie = await Movie.find({
       saga: { $eq: true}
@@ -79,7 +83,7 @@ moviesRouter.get("/saga/true", async (req, res, next) => {
   }
 });
 
-moviesRouter.get("/oscar/winning", async (req, res, next) => {
+moviesRouter.get("/oscar/winning", [isAuthPassport], async (req, res, next) => {
   try {
     const movie = await Movie.find({
       oscar: { $gt: 0}
@@ -89,6 +93,8 @@ moviesRouter.get("/oscar/winning", async (req, res, next) => {
     return next(err);
   }
 });
+
+// CRUD QUE PIDE EL EJERCICIO CON AUTH. DE TOKEN
 
 moviesRouter.post("/", [isAuthJWT], async (req, res, next) => {
   try {

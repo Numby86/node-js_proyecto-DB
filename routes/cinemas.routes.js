@@ -10,7 +10,9 @@ const isAuthPassport = require('../utils/middlewares/auth-passport.middleware.js
 
 const cinemasRouter = express.Router();
 
-cinemasRouter.get('/',isAuthPassport , async (req, res, next) => {
+// GET DEL EJERCICIO CON AUTH. PASSPORT
+
+cinemasRouter.get('/', [isAuthPassport] , async (req, res, next) => {
     try {
         const cinemas = await Cinema.find().populate('moviesBillboard');
         return res.status(200).json(cinemas);
@@ -18,6 +20,8 @@ cinemasRouter.get('/',isAuthPassport , async (req, res, next) => {
         next(err);
     }
 });
+
+// CRUD QUE PIDE EL EJERCICIO CON AUTH. DE TOKEN
 
 cinemasRouter.post('/create', [isAuthJWT, upload.single('picture')], async (req, res, next) => {
     try {
@@ -63,6 +67,8 @@ cinemasRouter.delete('/:id', [isAuthJWT], async (req, res, next) => {
     }
 });
 
+// PARA AÑADIR PELICULAS A LA CARTELERA
+
 cinemasRouter.put('/add-moviesBillboard', [isAuthJWT], async (req, res, next) => {
     try {
         const { cinemaId, movieId } = req.body;
@@ -83,29 +89,7 @@ cinemasRouter.put('/add-moviesBillboard', [isAuthJWT], async (req, res, next) =>
     }
 });
 
-cinemasRouter.put('/billboard/movies', async (req, res, next) => {
-    const movie = await Movie.find({
-        oscar: { $gt: 0}
-      });
-    const moviesId = movie._id;
-    try {
-        const { cinemaId, moviesId } = req.body;
-        if (!cinemaId) {
-            return next(createError('Se necesita la id del Cine, para poder añadir peliculas a la cartelera. '))
-        }
-        if (!moviesId) {
-            return next(createError('Se necesita la id de la pelicula, para que la podamos añadir. '))
-        }
-        const updateCinema = await Cinema.findByIdAndUpdate(
-            cinemaId,
-            { $push: { moviesBillboard: moviesId } },
-            { new: true }
-        );
-        return res.status(200).json(updateCinema);
-    } catch (err) {
-        next(err);
-    }
-});
+// PARA CAMBIAR CUALQUIER PARAMETRO DEL CINE
 
 cinemasRouter.put('/update/:id', [isAuthJWT], async (req, res, next) => {
     try {

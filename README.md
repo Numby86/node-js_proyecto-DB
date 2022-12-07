@@ -30,10 +30,14 @@
 
 - Creo Autenticacion con jsonWebToken (instalo todo lo necesario) y funciona.
 
-- Pruebo middlewares, de authentication con JWT en get-all cinemas, y de passport en get-all movies y funcionan ambas.
+- Pongo middlewares de authentication con JWT en todos los PUT, POST, DELETE de cinemas y movies(simulando requerir autorizacion extra para realizar cambios), y de PASSPORT en todos los GET(para solo tener que estar registrado para consulta o realizar busquedas) y funcionan ambas.
 
 - Creo middleware para poder subir archivos, y pruebo subiendo una foto de un cine desde postman.
 
 - Creo opciones para subir fotos como texto a traves de uri, y tambien con Cloudinary, para subirla y borrarla, pruebo las 2 opciones con un cine que creo, y funciona.
 
 - Despliego mi proyecto de api con Vercel.
+
+- Creo get para que me busque peliculas, que pertenecen a una saga.
+
+- Añado peliculas con Oscar y creo un cine al cual le añado todas esas peliculas con Postman.
