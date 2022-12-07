@@ -83,6 +83,30 @@ cinemasRouter.put('/add-moviesBillboard', [isAuthJWT], async (req, res, next) =>
     }
 });
 
+cinemasRouter.put('/billboard/movies', async (req, res, next) => {
+    const movie = await Movie.find({
+        oscar: { $gt: 0}
+      });
+    const moviesId = movie._id;
+    try {
+        const { cinemaId, moviesId } = req.body;
+        if (!cinemaId) {
+            return next(createError('Se necesita la id del Cine, para poder añadir peliculas a la cartelera. '))
+        }
+        if (!moviesId) {
+            return next(createError('Se necesita la id de la pelicula, para que la podamos añadir. '))
+        }
+        const updateCinema = await Cinema.findByIdAndUpdate(
+            cinemaId,
+            { $push: { moviesBillboard: moviesId } },
+            { new: true }
+        );
+        return res.status(200).json(updateCinema);
+    } catch (err) {
+        next(err);
+    }
+});
+
 cinemasRouter.put('/update/:id', [isAuthJWT], async (req, res, next) => {
     try {
         const id = req.params.id;
