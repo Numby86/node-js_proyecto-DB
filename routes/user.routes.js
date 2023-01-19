@@ -11,11 +11,11 @@ userRouter.post("/register", (req, res, next) => {
   const done = (err, user) => {
     if (err) {
       //return next(err);
-      return res.status(500);
+      return res.status(500).json(res);
     }
     req.logIn(user, (err) => {
       if (err) {
-        return res.status(500);
+        return res.status(500).json(res);
       }
       return res.status(201).json(user);
     });
