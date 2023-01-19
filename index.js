@@ -48,7 +48,7 @@ server.use(passport.initialize());
 server.use(passport.session());
 
 server.get('/', (req, res) => {
-    res.json(`Bienvenido a nuestra pagina de cine. `)
+    res.json(`hola. `)
 });
 
 server.use('/user', userRouter);
