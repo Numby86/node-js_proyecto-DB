@@ -10,11 +10,12 @@ const userRouter = express.Router();
 userRouter.post("/register", (req, res, next) => {
   const done = (err, user) => {
     if (err) {
-      return next(err);
+      //return next(err);
+      return res.status(500);
     }
     req.logIn(user, (err) => {
       if (err) {
-        return next(err);
+        return res.status(500);
       }
       return res.status(201).json(user);
     });
