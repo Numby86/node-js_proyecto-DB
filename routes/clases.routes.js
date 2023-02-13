@@ -6,7 +6,7 @@ const classRouter = express.Router();
 
 classRouter.get("/", async(req, res, next) => {
     try {
-        const clases = await Class.find({});
+        const clases = await Class.find();
         return res.status(200).json(clases);
     } catch (err) {
         return next(err);
@@ -19,7 +19,7 @@ classRouter.post("/", async(req, res, next) => {
         const createdClass = await newClase.save();
         return res.status(201).json(createdClass);
     } catch (err) {
-        return next(err);
+        next(err);
     }
 });
 
