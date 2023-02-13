@@ -3,6 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const moviesRouter = require('./routes/movies.routes.js');
 const cinemasRouter = require('./routes/cinemas.routes.js');
+const clasesRouter = require('./routes/clases.routes.js');
 const connect = require('./utils/db/connect.js');
 const cors = require('cors');
 const passport = require('passport');
