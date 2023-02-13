@@ -14,6 +14,20 @@ classRouter.get("/", async(req, res, next) => {
     }
 })
 
+classRouter.get("/:id", async(req, res, next) => {
+    const id = req.params.id;
+    try {
+      const clases = await Class.findById(id);
+      if (clases) {
+        return res.status(200).json(clases);
+      } else {
+        return res.status(404).json("No existe una clase con ese id");
+      }
+    } catch (err) {
+      return next(err);
+    }
+})
+
 classRouter.post("/", async(req, res, next) => {
     try {
         const newClase = new Class({ ...req.body });

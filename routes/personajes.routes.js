@@ -14,6 +14,20 @@ personajeRouter.get("/", async(req, res, next) => {
     }
 })
 
+personajeRouter.get("/:id", async (req, res, next) => {
+    const id = req.params.id;
+    try {
+      const personajes = await Personaje.findById(id);
+      if (personajes) {
+        return res.status(200).json(personajes);
+      } else {
+        return res.status(404).json("No existe un personaje con ese id");
+      }
+    } catch (err) {
+      return next(err);
+    }
+});
+
 personajeRouter.post("/", async(req, res, next) => {
     try {
         const newPersonaje = new Personaje({ ...req.body });
