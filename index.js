@@ -52,10 +52,11 @@ server.get('/', (req, res) => {
     res.json(`Bienvenido a nuestra pagina de cine. `)
 });
 
+server.use('/class', clasesRouter);
 server.use('/user', userRouter);
 server.use('/movies', moviesRouter);
 server.use('/cinemas', cinemasRouter);
-server.use('/class', clasesRouter);
+
 
 server.use('*', (req, res, next) => {
     next(createError('Esta ruta no existe', 404));
