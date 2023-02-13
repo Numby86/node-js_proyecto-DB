@@ -52,6 +52,10 @@ server.get('/', (req, res) => {
     res.json(`Bienvenido a nuestra pagina de cine. `)
 });
 
+server.get('/class', (req, res) => {
+    res.json(`Estas en clases. `)
+});
+
 server.use('/class', clasesRouter);
 server.use('/user', userRouter);
 server.use('/movies', moviesRouter);
