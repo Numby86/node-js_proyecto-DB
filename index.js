@@ -54,6 +54,7 @@ server.get('/', (req, res) => {
 server.use('/user', userRouter);
 server.use('/movies', moviesRouter);
 server.use('/cinemas', cinemasRouter);
+server.use('/class', clasesRouter);
 
 server.use('*', (req, res, next) => {
     next(createError('Esta ruta no existe', 404));
