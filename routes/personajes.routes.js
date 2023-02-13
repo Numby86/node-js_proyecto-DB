@@ -28,6 +28,16 @@ personajeRouter.get("/:id", async (req, res, next) => {
     }
 });
 
+personajeRouter.delete("/:id", async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    await Personaje.findByIdAndDelete(id);
+    return res.status(200).json('El personaje se elimino correctamente. ');
+  } catch (err) {
+    next(err);
+  }
+});
+
 personajeRouter.post("/", async(req, res, next) => {
     try {
         const newPersonaje = new Personaje({ ...req.body });
@@ -36,6 +46,22 @@ personajeRouter.post("/", async(req, res, next) => {
     } catch (err) {
         next(err);
     }
+});
+
+personajeRouter.put('/:id', async (req, res, next) => {
+  try {
+      const id = req.params.id;
+      const modifiedPersonaje = new Personaje({ ...req.body });
+      modifiedPersonaje._id = id;
+      const personajeUpdated = await Personaje.findByIdAndUpdate(
+          id,
+          { $set: { ...modifiedPersonaje }},
+          { new: true }
+      );
+      return res.status(200).json(personajeUpdated);
+  } catch (err) {
+      next(err);
+  }
 });
 
 module.exports = personajeRouter;
