@@ -5,7 +5,7 @@ const clasesSchema = new mongoose.Schema({
   name: String,
   image: String,
   description: String,
-  stats: [
+  stats: 
     {
       level: Number,
       vigor: Number,
@@ -17,7 +17,7 @@ const clasesSchema = new mongoose.Schema({
       faith: Number,
       arcane: Number,
     },
-  ],
+
 });
 
 const Class = mongoose.model('Class', clasesSchema);

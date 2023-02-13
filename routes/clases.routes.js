@@ -3,6 +3,7 @@ const Class = require("../models/Clases.js");
 const isAuthJWT = require("../utils/middlewares/auth-jwt.middleware.js");
 const isAuthPassport = require("../utils/middlewares/auth-passport.middleware.js");
 const classRouter = express.Router();
+const createError = require('../utils/errors/create-errors.js');
 
 classRouter.get("/", async(req, res, next) => {
     try {
