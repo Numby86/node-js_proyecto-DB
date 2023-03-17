@@ -27,6 +27,20 @@ cloudinary.config({
     api_secret: process.env.CLOUD_API_SECRET
 });
 
+
+// const whitelist = ['http://localhost:3000', 'http://localhost:4200' /** other domains if any */ ]
+// const corsOptions = {
+//   credentials: true,
+//   origin: function(origin, callback) {
+//     if (whitelist.indexOf(origin) !== -1) {
+//       callback(null, true)
+//     } else {
+//       callback(new Error('Not allowed by CORS'))
+//     }
+//   }
+// };
+// server.use(cors(corsOptions));
+
 server.use(cors());
 server.use(express.json());
 server.use(express.urlencoded({ extended: false }));
