@@ -4,7 +4,11 @@ const express = require('express');
 const moviesRouter = require('./routes/movies.routes.js');
 const cinemasRouter = require('./routes/cinemas.routes.js');
 const clasesRouter = require('./routes/clases.routes.js');
-const personajeRouter = require('./routes/personajes.routes.js')
+const personajeRouter = require('./routes/personajes.routes.js');
+const videogamesRouter = require('./routes/videogames.routes.js');
+const booksRouter = require('./routes/books.routes.js');
+const toysRouter = require('./routes/toys.routes.js');
+const clothesRouter = require('./routes/clothes.routes.js');
 const connect = require('./utils/db/connect.js');
 const cors = require('cors');
 const passport = require('passport');
@@ -72,6 +76,10 @@ server.use('/class', clasesRouter);
 server.use('/user', userRouter);
 server.use('/movies', moviesRouter);
 server.use('/cinemas', cinemasRouter);
+server.use('/videogames', videogamesRouter);
+server.use('/books', booksRouter);
+server.use('/clothes', clothesRouter);
+server.use('/toys', toysRouter);
 
 
 server.use('*', (req, res, next) => {
