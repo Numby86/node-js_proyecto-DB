@@ -6,7 +6,7 @@ const uploadToCloudinary = require('../utils/middlewares/cloudinary.middleware.j
 
 const cartsRouter = express.Router();
 
-cartsRouter.get('/', [isAuthJWT], async (req, res, next) => {
+cartsRouter.get('/', async (req, res, next) => {
     try {
         const allCarts = await Cart.find().populate('products');
         return res.status(200).json(allCarts);
@@ -15,7 +15,7 @@ cartsRouter.get('/', [isAuthJWT], async (req, res, next) => {
     }
 });
 
-cartsRouter.get('/:id', [isAuthJWT], async (req, res, next) => {
+cartsRouter.get('/:id', async (req, res, next) => {
     const id = req.params.id;
     try {
         const cart = await Cart.findById(id).populate('users');
@@ -31,7 +31,7 @@ cartsRouter.get('/:id', [isAuthJWT], async (req, res, next) => {
 });
 
 
-cartsRouter.post('/', [isAuthJWT], async (req, res, next) => {
+cartsRouter.post('/', async (req, res, next) => {
     try {
         const newProductCart = new Cart({ ...req.body });
         const createdProductCart = await newProductCart.save();
@@ -41,7 +41,7 @@ cartsRouter.post('/', [isAuthJWT], async (req, res, next) => {
     }
 });
 
-cartsRouter.delete('/:id', [isAuthJWT], async (req, res, next) => {
+cartsRouter.delete('/:id', async (req, res, next) => {
     try {
         const id = req.params.id;
         const deletedProductCart = await Cart.findByIdAndDelete(id);
@@ -55,7 +55,7 @@ cartsRouter.delete('/:id', [isAuthJWT], async (req, res, next) => {
     }
 });
 
-cartsRouter.put('/:id', [isAuthJWT], async (req, res, next) => {
+cartsRouter.put('/:id', async (req, res, next) => {
     try {
         const id = req.params.id;
         const modifiedCart = new Cart({ ...req.body });
