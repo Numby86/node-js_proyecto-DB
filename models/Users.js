@@ -6,6 +6,7 @@ const userSchema = new mongoose.Schema({
     name: {type: String},
     surname: {type: String},
     telefono: {type: Number},
+    avatar: {type: String},
     role: {type: String, enum: ["administrador", "usuario"]}
 }, {
     timestamps: true
