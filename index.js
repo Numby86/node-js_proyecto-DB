@@ -9,6 +9,8 @@ const videogamesRouter = require('./routes/videogames.routes.js');
 const booksRouter = require('./routes/books.routes.js');
 const toysRouter = require('./routes/toys.routes.js');
 const clothesRouter = require('./routes/clothes.routes.js');
+const productsRouter = require('./routes/products.routes.js');
+const cartsRouter = require('./routes/cart.routes.js');
 const connect = require('./utils/db/connect.js');
 const cors = require('cors');
 const passport = require('passport');
@@ -80,6 +82,8 @@ server.use('/videogames', videogamesRouter);
 server.use('/books', booksRouter);
 server.use('/clothes', clothesRouter);
 server.use('/toys', toysRouter);
+server.use('/products', productsRouter);
+server.use('/cart', cartsRouter);
 
 
 server.use('*', (req, res, next) => {
