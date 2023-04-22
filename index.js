@@ -4,6 +4,7 @@ const express = require('express');
 const moviesRouter = require('./routes/movies.routes.js');
 const cinemasRouter = require('./routes/cinemas.routes.js');
 const clasesRouter = require('./routes/clases.routes.js');
+const loadersRouter = require('./routes/loaders.routes.js');
 const personajeRouter = require('./routes/personajes.routes.js');
 const videogamesRouter = require('./routes/videogames.routes.js');
 const booksRouter = require('./routes/books.routes.js');
@@ -73,6 +74,7 @@ server.get('/', (req, res) => {
     res.json(`Bienvenido a nuestra pagina de cine. `)
 });
 
+server.use('/loaders', loadersRouter);
 server.use('/personaje', personajeRouter);
 server.use('/class', clasesRouter);
 server.use('/user', userRouter);

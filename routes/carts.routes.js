@@ -8,7 +8,7 @@ const cartsRouter = express.Router();
 
 cartsRouter.get('/', async (req, res, next) => {
     try {
-        const allCarts = await Cart.find().populate('products');
+        const allCarts = await Cart.find();
         return res.status(200).json(allCarts);
     } catch (err) {
         next(err);
