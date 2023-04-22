@@ -27,5 +27,14 @@ loadersRouter.get('/:id', async (req, res) => {
     }
 });
 
+loadersRouter.post("/", async (req, res, next) => {
+    try {
+      const newLoader = new Loader({ ...req.body });
+      const createdLoader = await newLoader.save();
+      return res.status(201).json(createdLoader);
+    } catch (err) {
+      next(err);
+    }
+  });
 
 module.exports = cartsRouter;
